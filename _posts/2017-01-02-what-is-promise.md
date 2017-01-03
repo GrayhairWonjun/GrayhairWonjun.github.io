@@ -4,7 +4,8 @@ title:  "What is Promise"
 date:   2017-01-02 20:46:58 -0600
 categories: Javascript
 ---
-#What is promise?
+
+# What is promise?
 
 > The core idea behind promises is that a promise represents the result of an asynchronous operation. A promise is in one of three different states:
 > * pending - The initial state of a promise.
@@ -44,4 +45,4 @@ return 'foo';
 
 then() 에 정의된 function은 반드시 return을 해 주어야 다음 .then()에서 값을 전달 받을 수 있다는 것을 명심하자.
 
-[We-have-a-problem-with-Promises] : https://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html?utm_source=javascriptweekly&utm_medium=email
+[We-have-a-problem-with-Promises]: https://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html?utm_source=javascriptweekly&utm_medium=email
