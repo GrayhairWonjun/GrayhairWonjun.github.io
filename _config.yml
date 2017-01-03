@@ -3,7 +3,7 @@ description: Fake it 'til you make it
 meta_description: "Gray Hair Developer, Blogging about Programming"
 
 markdown: kramdown
-highlighter: pygments
+highlighter: rouge
 logo: false
 paginate: 15
 baseurl: "/"
