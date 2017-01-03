@@ -2,6 +2,8 @@
 layout: post
 title:  "What is Promise"
 date:   2017-01-02 20:46:58 -0600
+comments: true
+archive: true
 categories: Javascript
 ---
 
