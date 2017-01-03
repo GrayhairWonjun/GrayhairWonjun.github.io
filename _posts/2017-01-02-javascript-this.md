@@ -21,6 +21,7 @@ f1() === global
 ```
 
 strict mode에서는 function을 실행할 때 넣어주는 값이 this의 값으로 유지되기 때문에 아래 코드의 경우 this는 undefined 가 된다.
+
 ```js
 function f2(){
   "use strict"; // see strict mode
@@ -30,7 +31,8 @@ function f2(){
 f2() === undefined;
 ```
 
-strict mode에서 function call을 call() 또는 apply() 를 이용하여 this object를 전송해 주면 this 사용이 가능하다
+strict mode에서 function call을 call() 또는 apply() 를 이용하여 this object를 전송해 주면 this 사용이 가능하다.
+
 ```js
 (function(){
   'use strict';
