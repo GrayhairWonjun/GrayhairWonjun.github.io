@@ -5,12 +5,10 @@ date:   2017-01-02 20:46:58 -0600
 categories: Javascript
 ---
 
-# What is promise?
-
 > The core idea behind promises is that a promise represents the result of an asynchronous operation. A promise is in one of three different states:
-> * pending - The initial state of a promise.
-> * fulfilled - The state of a promise representing a successful operation.
-> * rejected - The state of a promise representing a failed operation.
+ * pending - The initial state of a promise.
+ * fulfilled - The state of a promise representing a successful operation.
+ * rejected - The state of a promise representing a failed operation.
 >
 > Once a promise is fulfilled or rejected, it is immutable \(i.e. it can never change again\).
 
@@ -22,26 +20,26 @@ javascript 코드를 작성할 때 너무 많은 depth를 가지는 형태로 �
 
 Promise는 synchronous code나 value를 감싸 asynchronous 형태로 만들어준다. 방식은 아래와 같이,
 
-```js
+{% highlight javascript %}
 new Promise( function( resolve, reject ){
-resolve( someSynchronousValue );
+  resolve( someSynchronousValue );
 } );
-```
+{% endhighlight %}
 
-```js
+{% highlight javascript %}
 Promise.resolve( someSynchronousValue ).then( );
-```
+{% endhighlight %}
 
 또는, 아래와 같이 function을 작성할 때에 Promise를 리턴하도록 작성하면 함수 호출 후 .then\(\) 또는 .catch\(\) 를 사용하여 처리가 가능하기에 이런 방법을 추천한다.
 
-```js
+{% highlight javascript %}
 function somePromiseAPI(){
-return Promise.resolve().then( function(){
-doSomethingThatMayThrow();
-return 'foo';
-} ).then(/*.....*/);
+  return Promise.resolve().then( function(){
+    doSomethingThatMayThrow();
+    return 'foo';
+  } ).then(/*.....*/);
 }
-```
+{% endhighlight %}
 
 then() 에 정의된 function은 반드시 return을 해 주어야 다음 .then()에서 값을 전달 받을 수 있다는 것을 명심하자.
 
