@@ -1,16 +1,40 @@
-name: Gray Hair Developer
-description: Fake it 'til you make it
-meta_description: "Gray Hair Developer, Blogging about Programming"
+# visit https://github.com/mojombo/jekyll/wiki/Configuration for more settings
 
+paginate: 15 # pagination based on number of posts
+paginate_path: "page:num"
+exclude: ["README.md"] # files to exclude
+highlighter: rogue
 markdown: kramdown
-highlighter: pygments
-logo: false
-paginate: 15
-baseurl: "/"
-domain_name: 
+disqus: gray-hair-developer
 google_analytics: UA-89750913-1
-gems: [jekyll-paginate]
+title: Gray Hair Developer, Blogging about Programming
 
-# Details for the RSS feed generator
-url:            
-author:         'Wonjun Jang'
+defaults:
+  -
+    scope:
+      path: "" # empty string for all files
+    values:
+      title: Gray Hair Developer
+
+description: Fake it 'til you make it
+author:
+  name: Wonjun Jang
+  email: wonjun62@gmail.com
+  github: https://github.com/GrayhairWonjun
+  twitter: 
+  pinterest: 
+  linkedin: 
+  bio: 
+  email_md5: b79784fd653274c34fcc7ed848f4ce63
+
+rss_path: feed.xml
+categories_path: categories.html
+tags_path: tags.html
+
+# set it as url of an image
+# sidebar_background_image: https://www.dropbox.com/s/g9h23zrycedxtk5/sky.png?raw=1
+
+BASE_PATH:
+
+gems:
+  - jekyll-paginate
