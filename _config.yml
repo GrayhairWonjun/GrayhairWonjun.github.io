@@ -5,19 +5,9 @@ paginate_path: "page:num"
 exclude: ["README.md"] # files to exclude
 highlighter: rouge
 markdown: kramdown
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge
-  syntax_highlighter_opts:
-    css_class: 'highlight'
-    span:
-      line_numbers: false
-    block:
-      line_numbers: true
-      start_line: 1
 disqus: gray-hair-developer
 google_analytics: UA-89750913-1
-title: Gray Hair Developer, Blogging about Programming
+title: Wonjun
 
 defaults:
   -
@@ -26,15 +16,15 @@ defaults:
     values:
       title: Gray Hair Developer
 
-description: Fake it 'til you make it
+description: 
 author:
   name: Wonjun Jang
-  email: wonjun62@gmail.com
-  github: https://github.com/GrayhairWonjun
-  twitter: 
+  email: 
+  github: GrayhairWonjun
+  twitter: wonjun62
   pinterest: 
-  linkedin: 
-  bio: 
+  linkedin: wjang62
+  bio: Fake it 'til you make it
   email_md5: b79784fd653274c34fcc7ed848f4ce63
 
 rss_path: feed.xml

@@ -3,12 +3,10 @@ layout: post
 title:  "Spring Data JPA"
 comments: true
 archive: true
-date:   2017-02-13 13:44:58 -0600
+date:   2017-02-19 20:07:58 -0500
 categories: Java Spring
 tags: java spring data jpa hibernate
 ---
-
-### Spring Data JPA
 
 Spring Data JPA Repository abstraction의 목적은 데이터 접근을 위해 작성되는 반복적인 코드 조각(boilerplate code)를 줄이기 위함.
 >The goal of Spring Data repository abstraction is to significantly reduce the amount of boilerplate code required to implement data access layers for various persistence stores.
@@ -140,7 +138,7 @@ public class PersistenceContext {
     @Bean(destroyMethod = "close")
     DataSource datasource(Environment env) {
         HikariConfig dataSourceConfig = new HikariConfig();
-        dataSourceConfig.setDataSourceClassName(env.getRequiredProperty("db.driver"));
+        dataSourceConfig.setDriverClassName(env.getRequiredProperty("db.driver"));
         dataSourceConfig.setJdbcUrl(env.getRequiredProperty("db.url"));
         dataSourceConfig.setUsername(env.getRequiredProperty("db.username"));
         dataSourceConfig.setPassword(env.getRequiredProperty("db.password"));
