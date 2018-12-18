@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Spring Cloud OAuth2 with JWT"
-comments: true
-archive: true
+title:  "[DRAFT] Spring Cloud OAuth2 with JWT"
+comments: false
+archive: false
 date:   2018-02-21 22:47:00 -0500
 categories: Java Spring
 tags: java Spring oauth2 jwt
