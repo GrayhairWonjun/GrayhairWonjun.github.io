@@ -15,11 +15,11 @@ categories: Javascript
 >
 > Once a promise is fulfilled or rejected, it is immutable \(i.e. it can never change again\).
 
-Promise는 callback 을 이용하여 코드를 작성하는 경우 점점 depth가 늘어나면서 복잡해져가는 코드를 가독성을 높여주고 callback 사용으로 인해 call stack이 의도치 않은 방향으로 흐르는 것을 방지하고 개발자에게 error handling 을 할 수 있는 권한을 돌려 준 모듈이라고 인터넷에 정의되어 있는 것 같다.
+Promise는 callback 을 이용하여 코드를 작성하는 경우 점점 depth가 늘어나면서 복잡해져가는 코드를 가독성을 높여주고 callback 사용으로 인해 call stack이 의도치 않은 방향으로 흐르는 것을 방지하고 개발자에게 error handling 을 할 수 있는 권한을 돌려 준 모듈이라고 한다.
 
 [We have a problem with Promises][We-have-a-problem-with-Promises] article 을 읽어보면 어떻게 Promise를 써야 할 것인지 조금은 감이 잡히는 것 같다.
 
-javascript 코드를 작성할 때 너무 많은 depth를 가지는 형태로 코드를 작성하는 피해야 한다.
+javascript 코드는 때론 너무 많은 depth를 가져(특히 연속된 callback구문) 가독성이 많이 떨어지는 경우가 있어, 이를 피할 수 있는 형태로 작성하는 것이 좋다.
 
 Promise는 synchronous code나 value를 감싸 asynchronous 형태로 만들어준다. 방식은 아래와 같이,
 
