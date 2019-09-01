@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "Builder Pattern"
-fullview: true
 comments: true
 archive: true
 date:   2018-12-17 20:37:00 -0500
