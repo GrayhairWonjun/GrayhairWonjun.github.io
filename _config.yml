@@ -34,7 +34,17 @@ tags_path: tags.html
 # set it as url of an image
 # sidebar_background_image: https://www.dropbox.com/s/g9h23zrycedxtk5/sky.png?raw=1
 
+<<<<<<< HEAD
 BASE_PATH:
 
 gems:
   - jekyll-paginate
+=======
+# Sidebar link settings
+sidebar_home_link:  true
+# sidebar_blog_link:  '/blog'   # By default, your home page is your blog
+                                # page. If you change your paginate_path,
+                                # set this to the root of the paginate_path
+                                # to enable a separate blog link.
+# visit https://github.com/mojombo/jekyll/wiki/Configuration for more settings
+>>>>>>> 31db2e1c962b823c297597ff418ce1451188c479
