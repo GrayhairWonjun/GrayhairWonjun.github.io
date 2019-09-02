@@ -5,6 +5,7 @@ paginate_path: "page:num"
 exclude: ["README.md"] # files to exclude
 highlighter: rouge
 markdown: kramdown
+theme: jekyll-theme-architect
 disqus: gray-hair-developer
 google_analytics: UA-89750913-1
 title: Wonjun
@@ -16,13 +17,13 @@ defaults:
     values:
       title: Gray Hair Developer
 
-description: 
+description:
 author:
   name: Wonjun Jang
-  email: 
+  email:
   github: GrayhairWonjun
   twitter: wonjun62
-  pinterest: 
+  pinterest:
   linkedin: wjang62
   bio: Fake it 'til you make it
   email_md5: b79784fd653274c34fcc7ed848f4ce63
@@ -34,10 +35,7 @@ tags_path: tags.html
 # set it as url of an image
 # sidebar_background_image: https://www.dropbox.com/s/g9h23zrycedxtk5/sky.png?raw=1
 
-# Sidebar link settings
-sidebar_home_link:  true
-# sidebar_blog_link:  '/blog'   # By default, your home page is your blog
-                                # page. If you change your paginate_path,
-                                # set this to the root of the paginate_path
-                                # to enable a separate blog link.
-# visit https://github.com/mojombo/jekyll/wiki/Configuration for more settings
+BASE_PATH:
+
+gems:
+  - jekyll-paginate
