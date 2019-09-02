@@ -9,8 +9,8 @@ categories: Java Javascript
 tags: Push Notifications Web App
 ---
 
-Web App Push notifications 작동방식에 대해 간단히 설명하면 아래 그림과 같다. PUSH API가 W3C에 정식 표준으로 등록되고 있는 중이다.
-최신 W3C Push API 문서는 https://www.w3.org/TR/push-api/ 의 사이트에서 확인할 수 있다.
+Web App Push notifications 작동방식에 대해 간단히 설명하면 아래 그림과 같다. PUSH API가 W3C에 정식 표준으로 등록이 진행 중에 있다.
+최신 W3C Push API 문서는 https://www.w3.org/TR/push-api/ 의 사이트에서 확인할 수 있다. 아래의 그림에서 보는 것 처럼 크게보면 사용자가 자신의 웹브라우저를 통해 push notification 등록을 진행하는 과정과 이 과정이 완료된 후 서버에서 클라이언트로 push notification 을 push service를 통해 전송하는 과정 둘로 나눌 수 있다.
 
 ![Web-App-Push-Notifications-diagram](/assets/images/posts/2019-09-01-WebAppPushNotifications.png)
 
