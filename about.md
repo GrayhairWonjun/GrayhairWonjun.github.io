@@ -1,13 +1,7 @@
 ---
 layout: page
-title: About
-sidebar_link: true
+title: About me 
 ---
 
-<p class="message">
-  Hey there! This page is included as an example. Feel free to customize it
-  for your own use upon downloading. Carry on!
-</p>
-
-To make pages show up in the sidebar, add `sidebar_link: true` to the front
-matter.
+Hello!! 
+My name is Wonjun Jang. I'm a software developer came from Korea. I'm interested in REST API and HTML5. I also love workout!!

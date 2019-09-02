@@ -1,41 +1,38 @@
-# Dependencies
-markdown:         kramdown
-theme: jekyll-theme-architect
-highlighter:      rouge
+# visit https://github.com/mojombo/jekyll/wiki/Configuration for more settings
 
-# Setup
-title:            Onejune
-tagline:          'June First'
-description:      'Fake it 'til you make it'
-url:              https://grayhairwonjun.github.io
-baseurl:          '/'
-                  # the optional subpath of your site, e.g. "/blog"
-                  # NB: This applies to all pages in your Jekyll site.
-                  # If you want to move just the blog index pages but keep
-                  # other pages at root, see the paginate_path and
-                  # sidebar_blog_link below.
+paginate: 15 # pagination based on number of posts
+paginate_path: "page:num"
+exclude: ["README.md"] # files to exclude
+highlighter: rouge
+markdown: kramdown
+disqus: gray-hair-developer
+google_analytics: UA-89750913-1
+title: Wonjun
 
+defaults:
+  -
+    scope:
+      path: "" # empty string for all files
+    values:
+      title: Gray Hair Developer
+
+description: 
 author:
   name: Wonjun Jang
-  email:
+  email: 
   github: GrayhairWonjun
   twitter: wonjun62
-  pinterest:
+  pinterest: 
   linkedin: wjang62
   bio: Fake it 'til you make it
   email_md5: b79784fd653274c34fcc7ed848f4ce63
 
-paginate:         10
-paginate_path:    '/page:num'
-                    # Or '/blog/page:num' if you want to move your index pages
-disqus: gray-hair-developer
-google_analytics: UA-89750913-1
-exclude: ["README.md"] # files to exclude
+rss_path: feed.xml
+categories_path: categories.html
+tags_path: tags.html
 
-plugins:
-  - jekyll-feed
-  - jekyll-gist
-  - jekyll-paginate
+# set it as url of an image
+# sidebar_background_image: https://www.dropbox.com/s/g9h23zrycedxtk5/sky.png?raw=1
 
 # Sidebar link settings
 sidebar_home_link:  true
