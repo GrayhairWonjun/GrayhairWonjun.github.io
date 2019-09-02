@@ -11,6 +11,7 @@ tags: Push Notifications Web App
 
 Web App Push notifications 작동방식에 대해 간단히 설명하면 아래 그림과 같다. PUSH API가 W3C에 정식 표준으로 등록되고 있는 중이다.
 최신 W3C Push API 문서는 https://www.w3.org/TR/push-api/ 의 사이트에서 확인할 수 있다.
+
 ![Web-App-Push-Notifications-diagram](/assets/images/posts/2019-09-01-WebAppPushNotifications.png)
 
 ### Push API 흐름
