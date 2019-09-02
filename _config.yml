@@ -1,1 +1,26 @@
 theme: jekyll-theme-minimal
+paginate: 15 # pagination based on number of posts
+paginate_path: "page:num"
+highlighter: rouge
+markdown: kramdown
+disqus: gray-hair-developer
+google_analytics: UA-89750913-1
+title: Wonjun
+
+defaults:
+  -
+    scope:
+      path: "" # empty string for all files
+    values:
+      title: Gray Hair Developer
+
+description:
+author:
+  name: Wonjun Jang
+  email:
+  github: GrayhairWonjun
+  twitter: wonjun62
+  pinterest:
+  linkedin: wjang62
+  bio: Fake it 'til you make it
+  email_md5: b79784fd653274c34fcc7ed848f4ce63
