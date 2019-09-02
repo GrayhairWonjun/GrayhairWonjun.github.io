@@ -1,4 +1,4 @@
-theme: jekyll-theme-minimal
+theme: jekyll-theme-hacker
 paginate: 15 # pagination based on number of posts
 paginate_path: "page:num"
 highlighter: rouge
