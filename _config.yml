@@ -5,6 +5,7 @@ paginate_path: "page:num"
 exclude: ["README.md"] # files to exclude
 highlighter: rouge
 markdown: kramdown
+remote_theme: fongandrew/hydeout
 disqus: gray-hair-developer
 google_analytics: UA-89750913-1
 title: Wonjun
