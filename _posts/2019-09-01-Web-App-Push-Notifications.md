@@ -14,20 +14,94 @@ Web App Push notifications 작동방식에 대해 간단히 설명하면 아래 
 ![Web-App-Push-Notifications-diagram](/assets/images/posts/2019-09-01-WebAppPushNotifications.png)
 
 ### Push API 흐름
-#### Service Worker Registration
+#### 1. Service Worker Registration
 web page(javascript코드)에서 사용자의 web browser로 ServiceWorker 등록을 요청한다. ServiceWorker는 보통 sw.js 파일로 생성되며
 push server로 부터 전송된 push message를 event handler를 통해 전달받아 원하는 형태로 display하거나 action을 정의하기 위해 사용되는 파일이다.
 사용자의 웹 브라우저가 PUSH API를 지원하는지 확인한 후에 ServiceWorker 파일을 브라우저에 등록한다.
-#### Create push subscription
+```javascript
+$(function () {
+    if ('serviceWorker' in navigator) {
+        console.warn("register service worker");
+        navigator.serviceWorker.register('sw.js').then(initialiseState);
+    } else {
+        console.warn('Service workers are not supported in this browser.');
+    }
+});
+```
+#### 2. Create push subscription
 사용자의 웹 브라우저가 푸시서버로 등록 요청을 하는 과정. 각 푸시 서비스는 사용자의 웹 브라우저 종류에 따라 다르다. 만일 크롬 웹 브라우저라면
 푸시 서비스는 구글에 의에 제공되고 파이어폭스를 사용한다면 파이어폭스 푸시 서버가 이를 제공한다. 푸시 서버에 등록이 완료되면 메시지 전송을 위한
 고유한 end point url을 전달받게 된다.
-#### Distribute subscription
+```javascript
+function initialiseState() {
+    if (!('showNotification' in ServiceWorkerRegistration.prototype)) {
+        console.warn('Notifications aren\'t supported.');
+        return;
+    }
+    if (Notification.permission === 'denied') {
+        console.warn('The user has blocked notifications.');
+        return;
+    }
+    if (!('PushManager' in window)) {
+        console.warn('Push messaging isn\'t supported.');
+        return;
+    }
+    navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
+        serviceWorkerRegistration.pushManager.getSubscription().then(function (subscription) {
+            if (!subscription) {
+                console.warn("subscribe");
+                subscribe();
+                return;
+            }
+        }).catch(function(err) {
+            console.warn('Error during getSubscription()', err);
+        });
+    });
+}
+function subscribe() {
+    navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
+        const subscribeOptions = {
+            userVisibleOnly: true,
+            applicationServerKey: urlB64ToUint8Array(privateKey)
+        }
+        serviceWorkerRegistration.pushManager.subscribe(subscribeOptions).then(function (subscription) {
+            return sendSubscriptionToServer(subscription);
+        }).catch(function (e) {
+            if (Notification.permission === 'denied') {
+                console.warn('Permission for Notifications was denied');
+            } else {
+                console.error('Unable to subscribe to push.', e);
+            }
+        });
+    });
+}
+```
+#### 3. Distribute subscription
 등록된 subscription 정보를 Application Server에 전달하면 이를 파일이나 DB에 저장하고 이후 사용자에게 메시지를 전송할 때 활용한다.
-#### Send push message
+```javascript
+function sendSubscriptionToServer(subscription) {
+    var key = subscription.getKey ? subscription.getKey('p256dh') : '';
+    var auth = subscription.getKey ? subscription.getKey('auth') : '';
+
+    return fetch('/push/subscription', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            endpoint: subscription.endpoint,
+            key: key ? btoa(String.fromCharCode.apply(null, new Uint8Array(key))) : '',
+            auth: auth ? btoa(String.fromCharCode.apply(null, new Uint8Array(auth))) : ''
+        })
+    });
+}
+```
+#### 4. Send push message
 Application Server가 Push Server로 사용자에게 메시지를 전송할 것을 요청한다. 이 때 사용자의 subscription 정보를 이용하여 메시지를 전송한다.
 
-Client sample code
+아래 위의 내용을 종합하여 만들어진 sample code이다. \<your public key\>  부분에 public key를 넣어주면 된다.
+
+**Client sample code**
 ```javascript
 const privateKey = '<your public key>';
 
@@ -121,7 +195,7 @@ function subscribe() {
         // <moniassist.nhausa.com>. This is why it is async and requires a catch.
         const subscribeOptions = {
             userVisibleOnly: true,
-            applicationServerKey: urlB64ToUint8Array('BNYD6XtseanRx1iEwmRPtu38ifFnvl1YJMd9DTbiiFb8Yr2Evsn_R0Ctqkoe7xYSxQ439dNa8_8eQ6vRSc_EZtI')
+            applicationServerKey: urlB64ToUint8Array(privateKey)
         }
         serviceWorkerRegistration.pushManager.subscribe(subscribeOptions).then(function (subscription) {
             // Update the server state with the new subscription
@@ -161,8 +235,9 @@ function sendSubscriptionToServer(subscription) {
     });
 }
 ```
+아래 코드는 serviceWorker 예제코드이다. 메시지를 받는 이벤트와 받은 메시지를 클릭했을때의 이벤트에 대한 핸들러를 등록하는 코드이다.
 
-sw.js 예제 소스코드
+**sw.js 예제 소스코드**
 ```javascript
 'use strict';
 
@@ -183,8 +258,9 @@ self.addEventListener('notificationclick', function(event) {
     event.waitUntil(clients.openWindow(event.data.url));
 });
 ```
+아래 서버 예제는 web-push 라이브러리(https://github.com/web-push-libs/webpush-java/) 를 이용하여 push notification을 전송하고 있다. Client가 subscription 정보를 서버로 전송하면 이를 세션에 저장한 후 클라이언트에게 푸시 메시지를 전송한다. 실제 코드에서는 전달 받은 subscription 정보를 디비에 저장한 후 향후 푸시 메시지를 전송할 때 디비에서 조회하여 사용하면 된다.
 
-Server 예제 코드
+**Server 예제 코드**
 ```java
 @Service
 public class PushNotificationService {
@@ -254,6 +330,8 @@ public class PushSubscription {
 ```
 
 Server 코드를 위해 아래의 dependency를 pom.xml 파일에 추가한다.
+
+**pom.xml**
 ```xml
 <dependency>
   <groupId>nl.martijndwars</groupId>
