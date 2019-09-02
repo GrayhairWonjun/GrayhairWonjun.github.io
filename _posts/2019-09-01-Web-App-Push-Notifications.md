@@ -259,7 +259,7 @@ self.addEventListener('notificationclick', function(event) {
     event.waitUntil(clients.openWindow(event.data.url));
 });
 ```
-아래 서버 예제는 web-push 라이브러리(https://github.com/web-push-libs/webpush-java/) 를 이용하여 push notification을 전송하고 있다. Client가 subscription 정보를 서버로 전송하면 이를 세션에 저장한 후 클라이언트에게 푸시 메시지를 전송한다. 실제 코드에서는 전달 받은 subscription 정보를 디비에 저장한 후 향후 푸시 메시지를 전송할 때 디비에서 조회하여 사용하면 된다.
+아래 서버 예제는 web-push 라이브러리(https://github.com/web-push-libs/webpush-java/) 를 이용하여 push notification을 전송한다. 서버에서 메시지를 client에게 push notification을 전송하기 위해서는 private key와 public key를 `PushService` 객체에 등록해 주어야만 한다.
 
 **Server 예제 코드**
 ```java
