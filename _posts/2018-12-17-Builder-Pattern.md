@@ -1,10 +1,10 @@
 ---
-layout: post
+layout: single
 title:  "Builder Pattern"
 comments: true
 archive: true
 date:   2018-12-17 20:37:00 -0500
-categories: Java
+categories: OOP Pattern
 tags: Builder Pattern Java
 ---
 

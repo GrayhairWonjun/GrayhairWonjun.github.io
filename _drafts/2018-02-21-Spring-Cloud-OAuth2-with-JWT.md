@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title:  "[DRAFT] Spring Cloud OAuth2 with JWT"
 comments: false
 archive: false
@@ -22,6 +22,6 @@ Spring Cloud OAuth2를 활용하여 OAuth2 서버와 클라이언트를 만들 �
 - Spring Data Rest를 이용하여 Client, User 관리 서비스 개발
 - Client Credentials Grant Type 으로 OAuth server 와 연동
 - Authorization Code Grant Type 으로 OAuth Server 와 연동
-- 
+-
 
 1. Spring Server

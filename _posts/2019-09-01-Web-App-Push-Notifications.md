@@ -1,11 +1,10 @@
 ---
 layout: single
 title:  "Web App에 Push Notification 보내기"
-fullview: true
 comments: true
 archive: true
 date:   2019-09-01 21:31:00
-categories: Push
+categories: Web App
 tags: Push Notifications Web App
 ---
 

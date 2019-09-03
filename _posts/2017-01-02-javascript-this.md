@@ -1,10 +1,11 @@
 ---
-layout: post
+layout: single
 title:  "this in Javascript"
 comments: true
 archive: true
 date:   2017-01-02 23:53:58 -0600
 categories: Javascript
+tags: javascript this
 ---
 
 node에서는 global object를 브라우저에서는 window object를 의미한다. 하지만 strict mode 에서는 undefined

@@ -1,10 +1,11 @@
 ---
-layout: post
+layout: single
 title:  "What is Promise"
 date:   2017-01-02 20:46:58 -0600
 comments: true
 archive: true
 categories: Javascript
+tags: javascript promise
 ---
 
 > The core idea behind promises is that a promise represents the result of an asynchronous operation. A promise is in one of three different states:

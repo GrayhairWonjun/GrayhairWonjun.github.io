@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title:  "Spring Data JPA"
 comments: true
 archive: true
@@ -11,7 +11,7 @@ tags: java spring data jpa hibernate
 Spring Data JPA Repository abstraction의 목적은 데이터 접근을 위해 작성되는 반복적인 코드 조각(boilerplate code)를 줄이기 위함.
 >The goal of Spring Data repository abstraction is to significantly reduce the amount of boilerplate code required to implement data access layers for various persistence stores.
 
-`Spring Data JPA`는 Repository abstraction을 제공하는 `Spring Data Commons`위에 놓여있다. 그렇기에 Spring Repository interface를 직접 구현하지 않고 Spring Data JPA를 사용할 수 있다. 
+`Spring Data JPA`는 Repository abstraction을 제공하는 `Spring Data Commons`위에 놓여있다. 그렇기에 Spring Repository interface를 직접 구현하지 않고 Spring Data JPA를 사용할 수 있다.
 
 첫째, Spring Data Commons 는 다음과 같은 인터페이스를 제공한다.
 * `Repository<T, ID extends Serializable>`
@@ -28,7 +28,7 @@ Spring Data JPA Repository abstraction의 목적은 데이터 접근을 위해 �
   * JPA specific repository interface.
 * `JpaSpecificationExecutor<T>`
   * Repository interface 가 아님
-  * Specification<T> object를 이용하여 Entity를 조회할 때 사용 
+  * Specification<T> object를 이용하여 Entity를 조회할 때 사용
 
 ### What components do we need?
 
@@ -47,21 +47,21 @@ Spring Data JPA Repository abstraction의 목적은 데이터 접근을 위해 �
         <artifactId>h2</artifactId>
         <version>1.4.185</version>
     </dependency>
-             
+
     <!-- DataSource (HikariCP) -->
     <dependency>
         <groupId>com.zaxxer</groupId>
         <artifactId>HikariCP</artifactId>
         <version>2.2.5</version>
     </dependency>
-     
+
     <!-- JPA Provider (Hibernate) -->
     <dependency>
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-entitymanager</artifactId>
         <version>4.3.8.Final</version>
     </dependency>
-     
+
     <!-- Spring Data JPA -->
     <dependency>
         <groupId>org.springframework.data</groupId>
@@ -95,7 +95,7 @@ db.driver=org.h2.Driver
 db.url=jdbc:h2:mem:datajpa
 db.username=sa
 db.password=
- 
+
 #Hibernate Configuration
 hibernate.dialect=org.hibernate.dialect.H2Dialect
 hibernate.hbm2ddl.auto=create-drop
@@ -149,22 +149,22 @@ public class PersistenceContext {
 *Configure the Entity Manager Factory Bean*
 {% highlight java %}
     @Bean
-    LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, 
+    LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource,
             Environment env) {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource);
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         entityManagerFactoryBean.setPackagesToScan("wjang.spring.data.jpa.example");
-        
+
         Properties jpaProperties = new Properties();
         jpaProperties.put("hibernate.dialect", env.getRequiredProperty("hibernate.dialect"));
         jpaProperties.put("hibernate.hbm2ddl.auto", env.getRequiredProperty("hibernate.hbm2ddl.auto"));
         jpaProperties.put("hibernate.ejb.naming_strategy", env.getRequiredProperty("hibernate.ejb.naming_strategy"));
         jpaProperties.put("hibernate.show_sql", env.getRequiredProperty("hibernate.show_sql"));
         jpaProperties.put("hibernate.format_sql", env.getRequiredProperty("hibernate.format_sql"));
-        
+
         entityManagerFactoryBean.setJpaProperties(jpaProperties);
-        
+
         return entityManagerFactoryBean;
     }
 {% endhighlight %}
@@ -194,7 +194,7 @@ import org.springframework.data.repository.Repository;
 import org.springframework.scheduling.annotation.Async;
 
 public interface BaseRepository<T, ID extends Serializable> extends Repository<T, ID>{
-    
+
     void delete(T deleted);
     List<T> findAll();
     T findOne(ID id);
@@ -226,7 +226,7 @@ import javax.persistence.Entity;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
- 
+
 @Entity
 @NamedNativeQuery(name = "Todo.findBySearchTermNamedNative",
         query="SELECT * FROM todos t WHERE " +
@@ -241,7 +241,7 @@ import javax.persistence.Table;
 )
 @Table(name = "todos")
 final class Todo {
- 
+
 }
   {% endhighlight %}
 * xml 파일에 정의
@@ -253,11 +253,11 @@ final class Todo {
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
         version="2.0">
- 
+
     <named-query name="Todo.findBySearchTermNamedOrmXml">
         <query>SELECT t FROM Todo t WHERE LOWER(t.title) LIKE LOWER(CONCAT('%', :searchTerm, '%')) OR LOWER(t.description) LIKE LOWER(CONCAT('%', :searchTerm, '%'))</query>
     </named-query>
- 
+
     <named-native-query name="Todo.findBySearchTermNamedNativeOrmXml"
                         result-class="net.petrikainulainen.springdata.jpa.todo.Todo">
         <query>SELECT * FROM todos t WHERE LOWER(t.title) LIKE LOWER(CONCAT('%',:searchTerm, '%')) OR LOWER(t.description) LIKE LOWER(CONCAT('%',:searchTerm, '%'))</query>
@@ -270,13 +270,13 @@ final class Todo {
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
- 
+
 import java.util.List;
- 
+
 interface TodoRepository extends Repository<Todo, Long> {
- 
+
     List<Todo> findBySearchTermNamed(@Param("searchTerm") String searchTerm);
- 
+
     @Query(nativeQuery = true)
     List<Todo> findBySearchTermNamedNative(@Param("searchTerm") String searchTerm);
 }
