@@ -13,8 +13,8 @@ Web App Push notifications 작동방식에 대해 간단히 설명하면 아래 
 
 ![Web-App-Push-Notifications-diagram](/assets/images/posts/2019-09-01-WebAppPushNotifications.png)
 
-### Push API 흐름
-#### 1. Service Worker Registration
+# Push API 흐름
+## 1. Service Worker Registration
 web page(javascript코드)에서 사용자의 web browser로 ServiceWorker 등록을 요청한다. ServiceWorker는 보통 sw.js 파일로 생성되며
 push server로 부터 전송된 push message를 event handler를 통해 전달받아 원하는 형태로 display하거나 action을 정의하기 위해 사용되는 파일이다.
 사용자의 웹 브라우저가 PUSH API를 지원하는지 확인한 후에 ServiceWorker 파일을 브라우저에 등록한다.
@@ -28,7 +28,7 @@ $(function () {
     }
 });
 ```
-#### 2. Create push subscription
+## 2. Create push subscription
 사용자의 웹 브라우저가 푸시서버로 등록 요청을 하는 과정. 각 푸시 서비스는 사용자의 웹 브라우저 종류에 따라 다르다. 만일 크롬 웹 브라우저라면
 푸시 서비스는 구글에 의에 제공되고 파이어폭스를 사용한다면 파이어폭스 푸시 서버가 이를 제공한다. 푸시 서버에 등록이 완료되면 메시지 전송을 위한
 고유한 end point url을 전달받게 된다.
@@ -76,7 +76,7 @@ function subscribe() {
     });
 }
 ```
-#### 3. Distribute subscription
+## 3. Distribute subscription
 등록된 subscription 정보를 Application Server에 전달하면 이를 파일이나 DB에 저장하고 이후 사용자에게 메시지를 전송할 때 활용한다.
 ```javascript
 function sendSubscriptionToServer(subscription) {
@@ -96,7 +96,7 @@ function sendSubscriptionToServer(subscription) {
     });
 }
 ```
-#### 4. Send push message
+## 4. Send push message
 Application Server가 Push Server로 사용자에게 메시지를 전송할 것을 요청한다. 이 때 사용자의 subscription 정보를 이용하여 메시지를 전송한다.
 
 아래 위의 내용을 종합하여 만들어진 sample code이다. \<your public key\>  부분에 public key를 넣어주면 된다.
