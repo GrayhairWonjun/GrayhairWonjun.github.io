@@ -105,7 +105,7 @@ public class Employee {
     private String managerId;
 
     private Employee() {}
-    public EmployeeBuilder builder() {
+    public static EmployeeBuilder builder() {
         return new EmployeeBuilder();
     }
 
